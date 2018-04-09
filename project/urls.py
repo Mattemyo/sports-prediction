@@ -1,4 +1,4 @@
-"""djangoreactproject URL Configuration
+"""project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 from customers import views
 from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^', TemplateView.as_view(template_name="main.html")),
     url(r'^api/customers/$', views.customers_list),
-    url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),    
+    url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
+]
 
+urlpatterns += [
+    url(r'^.*/', TemplateView.as_view(template_name="main.html"), name='base')
 ]
