@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CustomersService from './CustomersService';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const customersService = new CustomersService();
 
@@ -57,7 +57,6 @@ class CustomersList extends Component {
             </tr>
           </thead>
 
-
           <tbody>
             {this.state.customers.map((c) => (
               <tr key={c.pk}>
@@ -70,7 +69,7 @@ class CustomersList extends Component {
                 <td>{c.description}</td>
                 <td>
                   <button onClick={(e) => this.handleDelete(e, c.pk)}> Delete</button>
-                  <Link to={`/customer/ + ${c.pk}`}> Update</Link>
+                  <Link to={`/customer/${c.pk}`}> Update</Link>
                 </td>
               </tr>
             ))}
