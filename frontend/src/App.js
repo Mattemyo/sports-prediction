@@ -25,12 +25,12 @@ const BaseLayout = () => (
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <a className="nav-item nav-link" href="/">
+          <Link className="nav-item nav-link" to="/">
             CUSTOMERS
-          </a>
-          <a className="nav-item nav-link" href="/customer">
+          </Link>
+          <Link className="nav-item nav-link" to="/customer">
             CREATE CUSTOMER
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

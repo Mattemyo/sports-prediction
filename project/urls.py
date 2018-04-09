@@ -21,11 +21,12 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', TemplateView.as_view(template_name="main.html")),
     url(r'^api/customers/$', views.customers_list),
     url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
+    url(r'^', TemplateView.as_view(template_name="main.html")),
 ]
 
 urlpatterns += [
-    url(r'^.*/', TemplateView.as_view(template_name="main.html"), name='base')
+    url(r'^$', TemplateView.as_view(template_name="main.html"), name='base'),
+    url(r'^(?:.*)/?$', TemplateView.as_view(template_name="main.html"), name='base')
 ]
