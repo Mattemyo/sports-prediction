@@ -5,13 +5,12 @@ import CustomersList from './CustomersList';
 import CustomerCreateUpdate from './CustomerCreateUpdate';
 import './App.css';
 
-
 const BaseLayout = () => (
   <div className="container-fluid">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
-        Django React Demo
-      </a>
+      <Link className="navbar-brand" to="/">
+        Test React Demo
+      </Link>
       <button
         className="navbar-toggler"
         type="button"

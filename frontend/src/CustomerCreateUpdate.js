@@ -93,7 +93,7 @@ class CustomerCreateUpdate extends Component {
           <label>Address:</label>
           <input className="form-control" type="text" ref="address" />
 
-          <label>Description:</label>
+          <label>Info:</label>
           <textarea className="form-control" ref="description" />
 
           <input className="btn btn-primary" type="submit" value="Submit" />
