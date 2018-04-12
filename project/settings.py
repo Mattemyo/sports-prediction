@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'customers',
-    'webpack_loader'
+    'webpack_loader',
+    'livegames'
 ]
 
 MIDDLEWARE = [
