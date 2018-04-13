@@ -5,10 +5,12 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+import asyncio
+import aiohttp
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import LiveGame
 from .serializers import *
-from .tasks import add
+from .tasks import call_url
 
 
 # Client requests today's games
@@ -22,17 +24,23 @@ def livegames_list(request):
         livegames = LiveGame.objects.all()
 
         # request games from football data
-        data = add.apply_sync(1, 1)
 
-        # 'http://api.football-data.org/v1/fixtures/'
+        data = [call_url('http://api.football-data.org/v1/fixtures/')]
 
-        serializer = LiveGameSerializer(
-            data, context={'request': request}, many=True
-        )
+        loop = asyncio.new_event_loop()
+        # loop = asyncio.get_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(asyncio.wait(data))
 
-        return Response({
-            'data': serializer.data
-        })
+    # 'http://api.football-data.org/v1/fixtures/'
+
+    serializer = LiveGameSerializer(
+        data, context={'request': request}, many=True
+    )
+
+    return Response({
+        'data': serializer.data
+    })
 
 # @api_view(['GET', 'PUT', 'DELETE'])
 # def livegames_detail(request, pk):
