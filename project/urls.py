@@ -16,17 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from customers import views
-from livegames import views
+from customers import views as customers_views
+from livegames import views as livegames_views
 from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/customers/$', views.customers_list),
-    url(r'^api/customers/(?P<pk>[0-9]+)$', views.customers_detail),
-    path('api/livegames', views),
+    url(r'^api/customers/$', customers_views.customers_list),
+    url(r'^api/customers/(?P<pk>[0-9]+)$', customers_views.customers_detail),
+    path('api/livegames', livegames_views),
     url(r'^', TemplateView.as_view(template_name="main.html")),
 ]
+
 
 urlpatterns += [
     url(r'^$', TemplateView.as_view(template_name="main.html"), name='base'),
