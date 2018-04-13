@@ -11,7 +11,7 @@ import async_timeout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import LiveGame
 from .serializers import *
-from .tasks import call_url
+# from .tasks import call_url
 
 
 # Client requests today's games

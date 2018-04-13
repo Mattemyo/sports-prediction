@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-
+import GameListPage from './pages/GameListPage';
 import CustomersList from './CustomersList';
 import CustomerCreateUpdate from './CustomerCreateUpdate';
 import './App.css';
@@ -36,6 +36,7 @@ const BaseLayout = () => (
 
     <div className="content hey">
       <Route path="/" exact component={CustomersList} />
+      <Route path="/home" exact component={GameListPage} />
       <Route path="/customer/:pk" component={CustomerCreateUpdate} />
       <Route path="/customer/" exact component={CustomerCreateUpdate} />
     </div>
