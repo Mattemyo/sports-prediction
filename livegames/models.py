@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Live_Game(models.Model):
+class LiveGame(models.Model):
     game_id = models.CharField("Game Id", max_length=255)
     competition_id = models.CharField("Competition Id", max_length=255)
 
@@ -21,6 +21,3 @@ class Live_Game(models.Model):
 
     def __str__(self):
         return self.game_id
-
-
-class Live_Game(models.Model):

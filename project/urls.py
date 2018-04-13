@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/customers/$', customers_views.customers_list),
     url(r'^api/customers/(?P<pk>[0-9]+)$', customers_views.customers_detail),
-    path('api/livegames', livegames_views),
+    path('api/livegames', livegames_views.livegames_list),
     url(r'^', TemplateView.as_view(template_name="main.html")),
 ]
 

@@ -6,10 +6,12 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Customer
+from .models import LiveGame
 from .serializers import *
+from .tasks import add
 
 
+# Client requests today's games
 @api_view(['GET'])
 def livegames_list(request):
     """
@@ -17,10 +19,20 @@ def livegames_list(request):
  """
     if request.method == 'GET':
         data = []
-        livegames = Customer.objects.all()
-        
+        livegames = LiveGame.objects.all()
 
-        return Response({'data': serializer.data, 'count': paginator.count, 'numpages': paginator.num_pages, 'nextlink': '/api/livegames/?page=' + str(nextPage), 'prevlink': '/api/livegames/?page=' + str(previousPage)})
+        # request games from football data
+        data = add.apply_sync(1, 1)
+
+        # 'http://api.football-data.org/v1/fixtures/'
+
+        serializer = LiveGameSerializer(
+            data, context={'request': request}, many=True
+        )
+
+        return Response({
+            'data': serializer.data
+        })
 
 # @api_view(['GET', 'PUT', 'DELETE'])
 # def livegames_detail(request, pk):
