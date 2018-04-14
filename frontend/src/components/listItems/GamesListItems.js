@@ -1,15 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default ({ game }) => (
-  <div>
-    <h5>{game._links.competition.href}</h5>
-    <h5>
-      {game.homeTeamName} - {game.awayTeamName}
-    </h5>
-    <h6>
-      {Number(game.result.goalsHomeTeam)} - {Number(game.result.goalsAwayTeam)}
-    </h6>
-    <div>Status: {game.status}</div>
-    <div>Game Id: {game.homeTeam}</div>
-  </div>
-);
+export default ({
+  game: {
+    status,
+    homeTeamName,
+    awayTeamName,
+    result: { goalsHomeTeam, goalsAwayTeam },
+    _links: { competition: { href } }
+  }
+}) => {
+  const gameId = href.substr(href.lastIndexOf('/') + 1);
+
+  return (
+    <div>
+      <h5>{href}</h5>
+      <h5>
+        {homeTeamName} - {awayTeamName}
+      </h5>
+      <h6>
+        {Number(goalsHomeTeam)} - {Number(goalsAwayTeam)}
+      </h6>
+      <div>Status: {status}</div>
+      <div>Game Id: {gameId}</div>
+      <Link to={`livegames/${gameId}`}>Click Here </Link>
+    </div>
+  );
+};

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import GameListPage from './pages/GameListPage';
+import GamesListPage from './pages/GamesListPage';
+import GameDetailsPage from './pages/GameDetailsPage';
 import CustomersList from './CustomersList';
 import CustomerCreateUpdate from './CustomerCreateUpdate';
 import './App.css';
 
-const BaseLayout = () => (
+const App = () => (
   <div className="container-fluid">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        Test React Demo
+        Test React Yes
       </Link>
       <button
         className="navbar-toggler"
@@ -36,21 +37,12 @@ const BaseLayout = () => (
 
     <div className="content hey">
       <Route path="/" exact component={CustomersList} />
-      <Route path="/home" exact component={GameListPage} />
+      <Route path="/livegames" exact component={GamesListPage} />
+      <Route path="/livegames/:gameId" component={GameDetailsPage} />
       <Route path="/customer/:pk" component={CustomerCreateUpdate} />
       <Route path="/customer/" exact component={CustomerCreateUpdate} />
     </div>
   </div>
 );
-
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <BaseLayout />
-      </BrowserRouter>
-    );
-  }
-}
 
 export default App;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'react-router-dom';
 import GameListItems from '../components/listItems/GamesListItems';
 
 export default class GameListPage extends Component {
