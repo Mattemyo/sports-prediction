@@ -23,7 +23,7 @@ export default ({
       </h6>
       <div>Status: {status}</div>
       <div>Game Id: {gameId}</div>
-      <Link to={`livegames/${gameId}`}>Click Here </Link>
+      <Link to={`/livegame/${gameId}`}>Click Here </Link>
     </div>
   );
 };

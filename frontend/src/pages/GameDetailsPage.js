@@ -5,6 +5,7 @@ export default class GameDetailsPage extends Component {
     gameId: ''
   };
   componentDidMount = () => {
+    console.table(this.props);
     const { match: { params } } = this.props;
     if (params && params.gameId) {
       this.setState({

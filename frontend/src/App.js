@@ -38,7 +38,7 @@ const App = () => (
     <div className="content hey">
       <Route path="/" exact component={CustomersList} />
       <Route path="/livegames" exact component={GamesListPage} />
-      <Route path="/livegames/:gameId" component={GameDetailsPage} />
+      <Route path="/livegame/:gameId" component={GameDetailsPage} />
       <Route path="/customer/:pk" component={CustomerCreateUpdate} />
       <Route path="/customer/" exact component={CustomerCreateUpdate} />
     </div>
