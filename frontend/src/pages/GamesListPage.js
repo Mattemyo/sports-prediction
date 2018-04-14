@@ -8,15 +8,21 @@ export default class GameListPage extends Component {
   };
 
   componentWillMount() {
-    this.getTodaysGames();
+    if (!sessionStorage.length) {
+      this.getTodaysGames();
+    } else {
+      this.setState({ liveGames: JSON.parse(sessionStorage.getItem('liveGames')) });
+    }
+    console.table(this.state.liveGames.slice(1, 10));
   }
 
   getTodaysGames = () => {
     fetch('http://127.0.0.1:8000/api/livegames')
       .then((response) => response.json())
       .then((data) => {
-        console.table(data);
         this.setState({ liveGames: data.fixtures.slice(1) });
+
+        sessionStorage.setItem('liveGames', JSON.stringify(this.state.liveGames));
       });
   };
 
