@@ -6,11 +6,13 @@ export default ({
     status,
     homeTeamName,
     awayTeamName,
+    date,
     result: { goalsHomeTeam, goalsAwayTeam },
     _links: { self: { href } }
   }
 }) => {
   const gameId = href.substr(href.lastIndexOf('/') + 1);
+  const formattedDate = date;
 
   return (
     <div>
@@ -21,6 +23,7 @@ export default ({
       <h6>
         {Number(goalsHomeTeam)} - {Number(goalsAwayTeam)}
       </h6>
+      <p>{formattedDate}</p>
       <div>Status: {status}</div>
       <div>Game Id: {gameId}</div>
       <Link to={`/livegame/${gameId}`}>Click Here </Link>

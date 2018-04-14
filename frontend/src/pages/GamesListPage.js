@@ -20,8 +20,7 @@ export default class GameListPage extends Component {
     fetch('http://127.0.0.1:8000/api/livegames')
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ liveGames: data.fixtures.slice(1) });
-
+        this.setState({ liveGames: data.fixtures });
         sessionStorage.setItem('liveGames', JSON.stringify(this.state.liveGames));
       });
   };
@@ -35,9 +34,8 @@ export default class GameListPage extends Component {
     );
 
   sortAndDisplayGames = (competition) =>
-    competition &&
     competition
-      .sort((a, b) => a.date < b.date)
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       .map((game) => <GamesListItem game={game} key={game._links.self.href} />);
 
   render() {
