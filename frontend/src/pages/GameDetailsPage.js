@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 
 export default class GameDetailsPage extends Component {
-  state = {};
+  state = {
+    gameId: ''
+  };
   componentDidMount = () => {
     const { match: { params } } = this.props;
-    if (params && params.pk) {
+    if (params && params.gameId) {
+      this.setState({
+        gameId: params.gameId
+      });
     }
   };
 
   render() {
-    return <div>details</div>;
+    return <div>details {this.state.gameId}</div>;
   }
 }
