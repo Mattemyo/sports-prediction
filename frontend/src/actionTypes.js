@@ -1,0 +1,1 @@
+export const LIVE_GAMES_FETCHED = 'LIVE_GAMES_FETCHED';

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom';
 import GamesListItem from '../components/listItems/GamesListItem';
+import { connect } from 'react-redux';
 
-export default class GameListPage extends Component {
+class GameListPage extends Component {
   state = {
     liveGames: []
   };
@@ -40,14 +41,13 @@ export default class GameListPage extends Component {
 
   render() {
     const { filterCompetition, sortAndDisplayGames, state: { liveGames } } = this;
-
     const BPLGames = filterCompetition(liveGames, 445);
     const LaLigaGames = filterCompetition(liveGames, 455);
     const BundesligaGames = filterCompetition(liveGames, 452);
 
     return (
       <div>
-        <h1>BPL</h1>
+        <h1 className="col-6-3">BPL heydd</h1>
         <div>{sortAndDisplayGames(BPLGames)}</div>
         <h1>La Liga</h1>
         <div>
@@ -59,3 +59,4 @@ export default class GameListPage extends Component {
     );
   }
 }
+export default connect((state) => state.liveGames)(GamesListItem);
