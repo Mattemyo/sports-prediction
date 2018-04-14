@@ -14,3 +14,7 @@ export const updateActiveGame = (activeGameId) => ({
   type: ACTIVE_GAME_UPDATED,
   activeGameId
 });
+
+export const fetchActiveGameDetails = (gameId) => (dispatch) =>
+  api.liveGames.fetchAll().then((res) => dispatch(liveGamesFetched(res.data.fixtures)));
+
