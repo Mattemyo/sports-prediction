@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateActiveGame } from '../actions/liveGamesActions';
 
-export default class GameDetailsPage extends Component {
-  state = {
-    gameId: ''
-  };
-  componentDidMount = () => {
-    console.table(this.props);
-    const { match: { params } } = this.props;
+class GameDetailsPage extends Component {
+  componentWillMount = () => {
+    const {
+      props: {
+        match: { params },
+        updateActiveGame
+      }
+    } = this;
+
     if (params && params.gameId) {
-      this.setState({
-        gameId: params.gameId
-      });
+      updateActiveGame(params.gameId);
     }
   };
 
   render() {
-    return <div>details {this.state.gameId}</div>;
+    const {
+      props: {
+        activeGame: { gameId }
+      }
+    } = this;
+
+    return <div>detailss {gameId}</div>;
   }
 }
+
+export default connect((state) => ({ activeGame: state.activeGame }), {
+  updateActiveGame
+})(GameDetailsPage);
