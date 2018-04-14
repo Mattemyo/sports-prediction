@@ -25,5 +25,7 @@ def livegames_list(request):
         livegames = LiveGame.objects.all()
 
     return Response(
-        requests.get('http://api.football-data.org/v1/fixtures/').json()
+        requests.get('http://api.football-data.org/v1/fixtures/',
+                     headers={'X-Auth-Token': 'f8617d5c816742708d7e675a5a76a379'}
+                     ).json()
     )

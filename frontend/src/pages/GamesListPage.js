@@ -15,7 +15,7 @@ export default class GameListPage extends Component {
     fetch('http://127.0.0.1:8000/api/livegames')
       .then((response) => response.json())
       .then((data) => {
-        console.table(data.fixtures.slice(1, 10));
+        console.table(data);
         this.setState({ liveGames: data.fixtures.slice(1) });
       });
   };
@@ -28,12 +28,14 @@ export default class GameListPage extends Component {
         ) === competitionId
     );
 
-  displayGames = (competition) =>
+  sortAndDisplayGames = (competition) =>
     competition &&
-    competition.map((game) => <GamesListItem game={game} key={game._links.self.href} />);
+    competition
+      .sort((a, b) => a.date < b.date)
+      .map((game) => <GamesListItem game={game} key={game._links.self.href} />);
 
   render() {
-    const { filterCompetition, displayGames, state: { liveGames } } = this;
+    const { filterCompetition, sortAndDisplayGames, state: { liveGames } } = this;
 
     const BPLGames = filterCompetition(liveGames, 445);
     const LaLigaGames = filterCompetition(liveGames, 455);
@@ -42,12 +44,12 @@ export default class GameListPage extends Component {
     return (
       <div>
         <h1>BPL</h1>
-        <div>{displayGames(BPLGames)}</div>
+        <div>{sortAndDisplayGames(BPLGames)}</div>
         <h1>La Liga</h1>
         <div>
-          {displayGames(LaLigaGames)}
+          {sortAndDisplayGames(LaLigaGames)}
           <h1>Bundesliga</h1>
-          <div>{displayGames(BundesligaGames)}</div>
+          <div>{sortAndDisplayGames(BundesligaGames)}</div>
         </div>
       </div>
     );
