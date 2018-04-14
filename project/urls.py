@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^api/customers/$', customers_views.customers_list),
     url(r'^api/customers/(?P<pk>[0-9]+)$', customers_views.customers_detail),
     path('api/livegames', livegames_views.livegames_list),
+    path('api/livegame/<int:game_id>/', livegames_views.livegames_detail),
     url(r'^', TemplateView.as_view(template_name="main.html")),
 ]
 
