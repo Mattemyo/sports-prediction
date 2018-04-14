@@ -10,12 +10,12 @@ export const updateActiveGame = (activeGameId) => ({
   activeGameId
 });
 
-export const activeGameDetailsFetched = (gameId) => ({
+export const activeGameDetailsFetched = (data) => ({
   type: ACTIVE_GAME_DETAILS_FETCHED,
-  gameId
+  activeGameDetails: data
 });
 
 export const fetchActiveGameDetails = (gameId) => (dispatch) =>
   api.liveGames
     .fetchActiveGameDetails(gameId)
-    .then((res) => dispatch(liveGamesFetched(res.data)));
+    .then((res) => dispatch(activeGameDetailsFetched(res)));

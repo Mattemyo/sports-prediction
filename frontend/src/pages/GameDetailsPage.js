@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateActiveGame } from '../actions/activeGameActions';
+import {
+  updateActiveGame,
+  fetchActiveGameDetails
+} from '../actions/activeGameActions';
 
 class GameDetailsPage extends Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     const {
       props: {
         match: { params },
-        updateActiveGame
+        updateActiveGame,
+        fetchActiveGameDetails
       }
     } = this;
 
     if (params && params.gameId) {
       updateActiveGame(params.gameId);
+      fetchActiveGameDetails(params.gameId);
     }
   };
 
   render() {
     const {
       props: {
-        activeGame: { gameId }
+        activeGame: { activeGameId }
       }
     } = this;
 
-    return <div>detailss {gameId}</div>;
+    return <div>detailss {activeGameId}</div>;
   }
 }
 
 export default connect((state) => ({ activeGame: state.activeGame }), {
-  updateActiveGame
+  updateActiveGame,
+  fetchActiveGameDetails
 })(GameDetailsPage);
