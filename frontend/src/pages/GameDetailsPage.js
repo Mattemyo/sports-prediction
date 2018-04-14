@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateActiveGame } from '../actions/liveGamesActions';
+import { updateActiveGame } from '../actions/activeGameActions';
 
 class GameDetailsPage extends Component {
   componentWillMount = () => {
