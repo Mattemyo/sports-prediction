@@ -8,7 +8,9 @@ export default ({
     awayTeamName,
     date,
     result: { goalsHomeTeam, goalsAwayTeam },
-    _links: { self: { href } }
+    _links: {
+      self: { href }
+    }
   }
 }) => {
   const gameId = href.substr(href.lastIndexOf('/') + 1);

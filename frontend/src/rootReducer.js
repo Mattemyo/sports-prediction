@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-// import items from './reducers/items';
+import liveGamesReducer from './reducers/liveGamesReducer';
 
 export default combineReducers({
-  // items,
-  router: routerReducer
+  router: routerReducer,
+  liveGames: liveGamesReducer
 });

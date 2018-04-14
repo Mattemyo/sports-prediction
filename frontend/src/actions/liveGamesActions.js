@@ -6,7 +6,5 @@ export const liveGamesFetched = (liveGames) => ({
   liveGames
 });
 
-export const fetchLiveGames = (data) => (dispatch) =>
-  api.liveGames.fetchAll().then((res) => {
-    dispatch(liveGamesFetched(res));
-  });
+export const fetchLiveGames = () => (dispatch) =>
+  api.liveGames.fetchAll().then((res) => dispatch(liveGamesFetched(res.data.fixtures)));

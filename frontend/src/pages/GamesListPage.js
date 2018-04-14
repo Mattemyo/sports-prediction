@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom';
-import GamesListItem from '../components/listItems/GamesListItem';
 import { connect } from 'react-redux';
+import GamesListItem from '../components/listItems/GamesListItem';
+import { fetchLiveGames } from '../actions/liveGamesActions';
 
-class GameListPage extends Component {
+class GamesListPage extends Component {
   state = {
-    liveGames: []
+    competitions: {
+      BPLGames: [],
+      LaLigaGames: [],
+      BundesligaGames: []
+    },
+    loading: true
   };
 
-  componentWillMount() {
-    if (!sessionStorage.length) {
-      this.getTodaysGames();
-    } else {
-      this.setState({ liveGames: JSON.parse(sessionStorage.getItem('liveGames')) });
-    }
-    console.table(this.state.liveGames.slice(1, 10));
+  componentDidMount() {
+    this.props.fetchLiveGames();
   }
 
-  getTodaysGames = () => {
-    fetch('http://127.0.0.1:8000/api/livegames')
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ liveGames: data.fixtures });
-        sessionStorage.setItem('liveGames', JSON.stringify(this.state.liveGames));
-      });
-  };
-
-  filterCompetition = (games, competitionId) =>
+  filterGames = (games, competitionId) =>
     games.filter(
       (game) =>
         Number(
@@ -40,23 +32,24 @@ class GameListPage extends Component {
       .map((game) => <GamesListItem game={game} key={game._links.self.href} />);
 
   render() {
-    const { filterCompetition, sortAndDisplayGames, state: { liveGames } } = this;
-    const BPLGames = filterCompetition(liveGames, 445);
-    const LaLigaGames = filterCompetition(liveGames, 455);
-    const BundesligaGames = filterCompetition(liveGames, 452);
+    const { filterGames, sortAndDisplayGames, props } = this;
+    const liveGames = Array.from(props.liveGames);
 
     return (
       <div>
-        <h1 className="col-6-3">BPL heydd</h1>
-        <div>{sortAndDisplayGames(BPLGames)}</div>
+        <h1 className="col-6-3">BPL </h1>
+        <div>{sortAndDisplayGames(filterGames(liveGames, 445))}</div>
         <h1>La Liga</h1>
         <div>
-          {sortAndDisplayGames(LaLigaGames)}
-          <h1>Bundesliga</h1>
-          <div>{sortAndDisplayGames(BundesligaGames)}</div>
+          {liveGames && sortAndDisplayGames(filterGames(liveGames, 455))}
+          <h1>Bundesligaa</h1>
+          <div>{liveGames && sortAndDisplayGames(filterGames(liveGames, 452))}</div>
         </div>
       </div>
     );
   }
 }
-export default connect((state) => state.liveGames)(GamesListItem);
+
+export default connect((state) => (state.liveGames ? { liveGames: state.liveGames } : {}), {
+  fetchLiveGames
+})(GamesListPage);
