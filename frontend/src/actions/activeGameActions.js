@@ -19,7 +19,7 @@ export const activeGameDetailsFetched = (data) => ({
 export const fetchActiveGameDetails = (gameId) => (dispatch) =>
   api.liveGames
     .fetchActiveGameDetails(gameId)
-    .then((res) => dispatch(activeGameDetailsFetched(res)));
+    .then((data) => dispatch(activeGameDetailsFetched(data)));
 
 export const activeGamePredictionFetched = (data) => ({
   type: ACTIVE_GAME_PREDICTION_FETCHED,
@@ -29,4 +29,4 @@ export const activeGamePredictionFetched = (data) => ({
 export const fetchActiveGamePrediction = (gameId) => (dispatch) =>
   api.liveGames
     .fetchActiveGamePrediction(gameId)
-    .then((res) => dispatch(activeGamePredictionFetched(res)));
+    .then((data) => dispatch(activeGamePredictionFetched(data)));

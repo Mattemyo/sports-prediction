@@ -9,4 +9,4 @@ export const liveGamesFetched = (liveGames) => ({
 export const fetchLiveGames = () => (dispatch) =>
   api.liveGames
     .fetchAll()
-    .then((res) => dispatch(liveGamesFetched(res.data.fixtures)));
+    .then((data) => dispatch(liveGamesFetched(data.fixtures)));
