@@ -37,4 +37,8 @@ def calculateResultPercentage(gameId):
     print('{} is playing against {}'.format(home_team_name, away_team_name))
 
     # Get percentages of wins, losses, and draws
-    return home_team_wins / count, draws / count, away_team_wins / count
+    return {
+        'homeTeamWins': (home_team_wins / count),
+        'draws': (draws / count),
+        'awaiTeamWins': (away_team_wins / count)
+    }
