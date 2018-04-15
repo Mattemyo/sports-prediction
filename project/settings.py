@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'customers',
     'webpack_loader',
-    'livegames'
+    'livegames',
+    'gamepredictor'
 ]
 
 MIDDLEWARE = [
