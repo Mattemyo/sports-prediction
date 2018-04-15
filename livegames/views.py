@@ -32,7 +32,6 @@ def livegames_list(request):
                      ).json()
     )
 
-
 @api_view(['GET'])
 def livegames_detail(request, game_id):
     return Response(
