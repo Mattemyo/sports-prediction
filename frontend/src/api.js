@@ -6,6 +6,10 @@ export default {
   liveGames: {
     fetchAll: () => axios.get(`${baseUrl}/livegames`).then((res) => res),
     fetchActiveGameDetails: (gameId) =>
-      axios.get(`${baseUrl}/livegame/${gameId}`).then((res) => res.data)
+      axios.get(`${baseUrl}/livegame/${gameId}`).then((res) => res.data),
+    fetchActiveGamePrediction: (gameId) =>
+      axios
+        .get(`${baseUrl}/livegame/prediction/${gameId}`)
+        .then((res) => res.data)
   }
 };

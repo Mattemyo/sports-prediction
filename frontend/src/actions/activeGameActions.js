@@ -2,7 +2,8 @@ import api from '../api';
 import {
   LIVE_GAMES_FETCHED,
   ACTIVE_GAME_UPDATED,
-  ACTIVE_GAME_DETAILS_FETCHED
+  ACTIVE_GAME_DETAILS_FETCHED,
+  ACTIVE_GAME_PREDICTION_FETCHED
 } from '../actionTypes';
 
 export const updateActiveGame = (activeGameId) => ({
@@ -19,3 +20,13 @@ export const fetchActiveGameDetails = (gameId) => (dispatch) =>
   api.liveGames
     .fetchActiveGameDetails(gameId)
     .then((res) => dispatch(activeGameDetailsFetched(res)));
+
+export const activeGamePredictionFetched = (data) => ({
+  type: ACTIVE_GAME_PREDICTION_FETCHED,
+  activeGamePrediction: data
+});
+
+export const fetchActiveGamePrection = (gameId) => (dispatch) =>
+  api.liveGames
+    .fetchActiveGamePrediction(gameId)
+    .then((res) => dispatch(activeGamePredictionFetched(res)));
