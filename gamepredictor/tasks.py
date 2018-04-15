@@ -40,5 +40,6 @@ def calculateResultPercentage(gameId):
     return {
         'homeTeamWins': (home_team_wins / count),
         'draws': (draws / count),
-        'awaiTeamWins': (away_team_wins / count)
+        'awayTeamWins': (away_team_wins / count)
     }
+    

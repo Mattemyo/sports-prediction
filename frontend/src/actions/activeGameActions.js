@@ -26,7 +26,7 @@ export const activeGamePredictionFetched = (data) => ({
   activeGamePrediction: data
 });
 
-export const fetchActiveGamePrection = (gameId) => (dispatch) =>
+export const fetchActiveGamePrediction = (gameId) => (dispatch) =>
   api.liveGames
     .fetchActiveGamePrediction(gameId)
     .then((res) => dispatch(activeGamePredictionFetched(res)));

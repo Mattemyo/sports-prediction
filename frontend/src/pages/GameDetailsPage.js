@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   updateActiveGame,
-  fetchActiveGameDetails
+  fetchActiveGameDetails,
+  fetchActiveGamePrediction
 } from '../actions/activeGameActions';
 
 class GameDetailsPage extends Component {
   state = {
+    activeGamePrediction: {
+      homeTeamWins: 0,
+      draws: 0,
+      awayTeamWins: 0
+    },
     date: '',
     status: '',
     matchday: 0,
@@ -27,23 +33,30 @@ class GameDetailsPage extends Component {
       props: {
         match: { params },
         updateActiveGame,
-        fetchActiveGameDetails
+        fetchActiveGameDetails,
+        fetchActiveGamePrediction
       }
     } = this;
 
     if (params && params.gameId) {
       updateActiveGame(params.gameId);
       fetchActiveGameDetails(params.gameId);
+      fetchActiveGamePrediction(params.gameId);
     }
   };
 
   render() {
     const {
       props: {
-        activeGame: { id, head2head, fixture }
+        activeGame: { activeGameId, head2head, fixture }
       },
       state
     } = this;
+
+    console.log(this.props);
+
+    const { homeTeamWins, draws, awayTeamWins } =
+      this.props.activeGame.activeGamePrediction || state.activeGamePrediction;
 
     const {
       date,
@@ -59,21 +72,32 @@ class GameDetailsPage extends Component {
     return (
       <div>
         <a href={competition.href} target="_blank">
-          League {id}
-        </a>{' '}
+          League {activeGameId}
+        </a>
         and {date}
         <div>
           {homeTeamName}
           {homeTeamScore} - {awayTeamScore}
           {awayTeamName}
-          <div>Prediction: my prediction</div>
+          <div>
+            Prediction:
+            {homeTeamWins},
+            {draws},
+            {awayTeamWins}
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default connect((state) => ({ activeGame: state.activeGame }), {
-  updateActiveGame,
-  fetchActiveGameDetails
-})(GameDetailsPage);
+export default connect(
+  (state) => ({
+    activeGame: state.activeGame
+  }),
+  {
+    updateActiveGame,
+    fetchActiveGameDetails,
+    fetchActiveGamePrediction
+  }
+)(GameDetailsPage);
