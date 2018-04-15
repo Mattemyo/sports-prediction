@@ -16,6 +16,9 @@ class GameDetailsPage extends Component {
       homeTeamScore: null,
       awayTeamScore: null
     },
+    _links: {
+      competition: {}
+    },
     loading: false
   };
 
@@ -48,17 +51,22 @@ class GameDetailsPage extends Component {
       matchday,
       homeTeamName,
       awayTeamName,
-      result: { homeTeamScore, awayTeamScore }
+      result: { homeTeamScore, awayTeamScore },
+      _links: { competition }
     } =
       fixture || state;
 
     return (
       <div>
-        League {id} and {date}
+        <a href={competition.href} target="_blank">
+          League {id}
+        </a>{' '}
+        and {date}
         <div>
           {homeTeamName}
-          {Number(Boolean(homeTeamScore))} - {Number(Boolean(awayTeamScore))}
+          {homeTeamScore} - {awayTeamScore}
           {awayTeamName}
+          <div>Prediction: my prediction</div>
         </div>
       </div>
     );
