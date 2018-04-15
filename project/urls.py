@@ -18,6 +18,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 from customers import views as customers_views
 from livegames import views as livegames_views
+from gamepredictor import views as gamepredictor_views
 from django.conf.urls import url
 
 urlpatterns = [
@@ -27,6 +28,8 @@ urlpatterns = [
     path('api/livegames', livegames_views.livegames_list),
     url(r'^api/livegame/(?P<game_id>[0-9]+)$',
         livegames_views.livegames_detail),
+    url(r'^api/livegame/prediction/(?P<game_id>[0-9]+)$',
+        gamepredictor_views.games_detail),
     url(r'^', TemplateView.as_view(template_name="main.html")),
 ]
 

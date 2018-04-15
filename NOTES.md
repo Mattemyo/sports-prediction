@@ -14,3 +14,4 @@
 
 - TODO
   * Fetch League Name to display
+  * Compare probability to odds
