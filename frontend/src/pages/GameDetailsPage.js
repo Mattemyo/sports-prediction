@@ -6,6 +6,19 @@ import {
 } from '../actions/activeGameActions';
 
 class GameDetailsPage extends Component {
+  state = {
+    date: '',
+    status: '',
+    matchday: 0,
+    homeTeamName: '',
+    awayTeamName: '',
+    result: {
+      homeTeamScore: null,
+      awayTeamScore: null
+    },
+    loading: false
+  };
+
   componentDidMount = () => {
     const {
       props: {
@@ -24,11 +37,31 @@ class GameDetailsPage extends Component {
   render() {
     const {
       props: {
-        activeGame: { activeGameId }
-      }
+        activeGame: { id, head2head, fixture }
+      },
+      state
     } = this;
 
-    return <div>detailss {activeGameId}</div>;
+    const {
+      date,
+      status,
+      matchday,
+      homeTeamName,
+      awayTeamName,
+      result: { homeTeamScore, awayTeamScore }
+    } =
+      fixture || state;
+
+    return (
+      <div>
+        League {id} and {date}
+        <div>
+          {homeTeamName}
+          {Number(Boolean(homeTeamScore))} - {Number(Boolean(awayTeamScore))}
+          {awayTeamName}
+        </div>
+      </div>
+    );
   }
 }
 
