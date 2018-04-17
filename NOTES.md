@@ -1,6 +1,6 @@
 # Notes
 
-* React and Redux on the frontend
+* React and Redux on the react
 * Django on the backend
 
 * Predict soccer games using machine learing techniques
