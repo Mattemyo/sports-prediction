@@ -5,43 +5,22 @@ import GameDetailsPage from './pages/GameDetailsPage';
 import CustomersList from './CustomersList';
 import CustomerCreateUpdate from './CustomerCreateUpdate';
 import './App.css';
+import TopNav from './components/navigation/TopNav';
+import Footer from './components/navigation/Footer';
 
 const App = () => (
-  <div className="container-fluid">
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-        Test React Yes
-      </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon" />
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <Link className="nav-item nav-link" to="/">
-            CUSTOMERS
-          </Link>
-          <Link className="nav-item nav-link" to="/customer">
-            CREATE CUSTOMER
-          </Link>
-        </div>
-      </div>
-    </nav>
-
-    <div className="content hey">
-      <Route path="/" exact component={CustomersList} />
-      <Route path="/livegames" exact component={GamesListPage} />
-      <Route path="/livegame/:gameId" component={GameDetailsPage} />
-      <Route path="/customer/:pk" component={CustomerCreateUpdate} />
-      <Route path="/customer/" exact component={CustomerCreateUpdate} />
-    </div>
+  <div className="container">
+    <TopNav />
+    <div className="spacer" />
+    <div className="sidebar">I am sidebar</div>
+    <Route path="/" exact component={CustomersList} />
+    <Route path="/livegames" exact component={GamesListPage} />
+    <Route path="/livegame/:gameId" component={GameDetailsPage} />
+    <Route path="/customer/:pk" component={CustomerCreateUpdate} />
+    <Route path="/customer/" exact component={CustomerCreateUpdate} />
+    <div className="sidebar">I am sidebar</div>
+    <div className="spacer" />
+    <Footer />
   </div>
 );
 

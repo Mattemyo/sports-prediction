@@ -22,7 +22,9 @@ class GamesListPage extends Component {
     games.filter(
       (game) =>
         Number(
-          game._links.competition.href.slice(game._links.competition.href.lastIndexOf('/') + 1)
+          game._links.competition.href.slice(
+            game._links.competition.href.lastIndexOf('/') + 1
+          )
         ) === competitionId
     );
 
@@ -36,20 +38,23 @@ class GamesListPage extends Component {
     const liveGames = Array.from(props.liveGames);
 
     return (
-      <div>
-        <h1 className="col-6-3">BPL </h1>
-        <div>{sortAndDisplayGames(filterGames(liveGames, 445))}</div>
-        <h1>La Liga</h1>
-        <div>
-          {sortAndDisplayGames(filterGames(liveGames, 455))}
-          <h1>Bundesligaa</h1>
-          <div>{sortAndDisplayGames(filterGames(liveGames, 452))}</div>
-        </div>
-      </div>
+        <main>
+          <h1>BPL </h1>
+          <div>{sortAndDisplayGames(filterGames(liveGames, 445))}</div>
+          <h1>La Liga</h1>
+          <div>
+            {sortAndDisplayGames(filterGames(liveGames, 455))}
+            <h1>Bundesligaa</h1>
+            <div>{sortAndDisplayGames(filterGames(liveGames, 452))}</div>
+          </div>
+        </main>
     );
   }
 }
 
-export default connect((state) => (state.liveGames ? { liveGames: state.liveGames } : {}), {
-  fetchLiveGames
-})(GamesListPage);
+export default connect(
+  (state) => (state.liveGames ? { liveGames: state.liveGames } : {}),
+  {
+    fetchLiveGames
+  }
+)(GamesListPage);
