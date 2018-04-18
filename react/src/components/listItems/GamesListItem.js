@@ -19,13 +19,17 @@ export default ({
   return (
     <div>
       <Link to={`/livegame/${gameId}`}>
-        <h5>
+        <span>
           {homeTeamName}{' '}
           <span>
             {goalsHomeTeam} - {goalsAwayTeam}
           </span>{' '}
           {awayTeamName}
-        </h5>
+          <span>
+            {'  '}
+            {status === 'IN_PLAY' ? status : status === 'FINISHED' && status}
+          </span>
+        </span>
       </Link>
     </div>
   );

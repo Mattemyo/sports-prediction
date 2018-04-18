@@ -54,13 +54,20 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 30px;
     margin: 0 30px;
-    grid-auto-flow: dense;
   }
 
-  div.all-games > * {
-    grid-column: 1fr;
+  div.competition-live {
     text-align: center;
     box-shadow: 2px 5px 8px #423f11;
+    display: grid;
+    grid-template-rows: 90px;
+  }
+  div.competition-live > * {
+    display: grid;
+    align-items: center;
+  }
+  div.competition-live :nth-child(2n) {
+    background: greenyellow;
   }
 
   footer {
