@@ -16,7 +16,6 @@ const App = () => (
     <Route path="/livegame/:gameId" component={GameDetailsPage} />
     <Route path="/customer/:pk" component={CustomerCreateUpdate} />
     <Route path="/customer/" exact component={CustomerCreateUpdate} />
-    <div className="sidebar">I am sidebar</div>
     <Footer />
   </div>
 );

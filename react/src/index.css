@@ -18,7 +18,7 @@ body {
 @media screen and (min-width: 700px) {
   .container {
     display: grid;
-    min-width: 96vw;
+    min-width: 98vw;
     max-width: 99vw;
     grid-gap: 20px;
     grid-template-rows: 100px [content-start] auto [content-end] 100px;
@@ -53,6 +53,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 30px;
+    margin: 0 30px;
     grid-auto-flow: dense;
   }
 

@@ -18,17 +18,15 @@ export default ({
 
   return (
     <div>
-      <h5>{href}</h5>
-      <h5>
-        {homeTeamName} - {awayTeamName}
-      </h5>
-      <h6>
-        {Number(goalsHomeTeam)} - {Number(goalsAwayTeam)}
-      </h6>
-      <p>{formattedDate}</p>
-      <div>Status: {status}</div>
-      <div>Game Id: {gameId}</div>
-      <Link to={`/livegame/${gameId}`}>Click Here </Link>
+      <Link to={`/livegame/${gameId}`}>
+        <h5>
+          {homeTeamName}{' '}
+          <span>
+            {goalsHomeTeam} - {goalsAwayTeam}
+          </span>{' '}
+          {awayTeamName}
+        </h5>
+      </Link>
     </div>
   );
 };
