@@ -38,16 +38,27 @@ class GamesListPage extends Component {
     const liveGames = Array.from(props.liveGames);
 
     return (
-        <main>
-          <h1>BPL </h1>
-          <div>{sortAndDisplayGames(filterGames(liveGames, 445))}</div>
-          <h1>La Liga</h1>
-          <div>
-            {sortAndDisplayGames(filterGames(liveGames, 455))}
-            <h1>Bundesligaa</h1>
-            <div>{sortAndDisplayGames(filterGames(liveGames, 452))}</div>
+      <main className="todays-games">
+        <div className="big-img">big image here!</div>
+        <div>
+          <h3>Today's Games</h3>
+        </div>
+        <div className="all-games">
+          <div className="competition-live">
+            <h1>BPL </h1>
+            {sortAndDisplayGames(filterGames(liveGames, 445))}
           </div>
-        </main>
+          <div className="competition-live">
+            <h1>La Liga</h1>
+            {sortAndDisplayGames(filterGames(liveGames, 455))}
+          </div>
+
+          <div className="competition-live">
+            <h1>Bundesliga</h1>
+            {sortAndDisplayGames(filterGames(liveGames, 452))}
+          </div>
+        </div>
+      </main>
     );
   }
 }
