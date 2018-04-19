@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import GamesListPage from './pages/GamesListPage';
 import GameDetailsPage from './pages/GameDetailsPage';
+import CompetitionPage from './pages/CompetitionPage';
 import CustomersList from './CustomersList';
 import CustomerCreateUpdate from './CustomerCreateUpdate';
 import './App.css';
@@ -14,6 +15,7 @@ const App = () => (
     <Route path="/" exact component={CustomersList} />
     <Route path="/livegames" exact component={GamesListPage} />
     <Route path="/livegame/:gameId" component={GameDetailsPage} />
+    <Route path="/competition/:competitionId" component={CompetitionPage} />
     <Route path="/customer/:pk" component={CustomerCreateUpdate} />
     <Route path="/customer/" exact component={CustomerCreateUpdate} />
     <Footer />

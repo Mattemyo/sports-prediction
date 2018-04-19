@@ -70,7 +70,7 @@ class GameDetailsPage extends Component {
       fixture || state;
 
     return (
-      <div>
+      <main>
         <a href={competition.href} target="_blank">
           League {activeGameId}
         </a>
@@ -86,7 +86,7 @@ class GameDetailsPage extends Component {
             {awayTeamWins}
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }
