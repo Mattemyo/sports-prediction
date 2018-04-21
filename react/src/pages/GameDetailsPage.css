@@ -1,0 +1,24 @@
+@media screen and (min-width: 700) {
+}
+main {
+  grid-template-columns: repeat(12, 1fr);
+  justify-content: center;
+  text-align: center;
+}
+
+main > *:first-of-type {
+  grid-column: 1 /-1;
+}
+div.home.team {
+  grid-column: 1 / 4;
+}
+div.score {
+  grid-column: 4 / -4;
+}
+div.away.team {
+  grid-column: -4 / -1;
+}
+
+div.prediction {
+  grid-column: 1 /-1;
+}

@@ -26,6 +26,7 @@ body {
 }
 main {
   grid-column: 1 / -1;
+  display: grid;
 }
 
 @media screen and (min-width: 700px) {

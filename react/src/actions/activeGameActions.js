@@ -6,6 +6,8 @@ import {
   ACTIVE_GAME_PREDICTION_FETCHED
 } from '../actionTypes';
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const updateActiveGame = (activeGameId) => ({
   type: ACTIVE_GAME_UPDATED,
   activeGameId
@@ -27,6 +29,8 @@ export const activeGamePredictionFetched = (data) => ({
 });
 
 export const fetchActiveGamePrediction = (gameId) => (dispatch) =>
-  api.liveGames
-    .fetchActiveGamePrediction(gameId)
-    .then((data) => dispatch(activeGamePredictionFetched(data)));
+  api.liveGames.fetchActiveGamePrediction(gameId).then((data) =>
+    delay(2000).then(() => {
+      dispatch(activeGamePredictionFetched(data));
+    })
+  );

@@ -5,6 +5,7 @@ import {
   fetchActiveGameDetails,
   fetchActiveGamePrediction
 } from '../actions/activeGameActions';
+import './GameDetailsPage.css';
 
 class GameDetailsPage extends Component {
   state = {
@@ -19,8 +20,8 @@ class GameDetailsPage extends Component {
     homeTeamName: '',
     awayTeamName: '',
     result: {
-      homeTeamScore: null,
-      awayTeamScore: null
+      goalsAwayTeam: null,
+      goalsHomeTeam: null
     },
     _links: {
       competition: {}
@@ -39,9 +40,12 @@ class GameDetailsPage extends Component {
     } = this;
 
     if (params && params.gameId) {
+      this.setState({ loading: true });
       updateActiveGame(params.gameId);
       fetchActiveGameDetails(params.gameId);
-      fetchActiveGamePrediction(params.gameId);
+      fetchActiveGamePrediction(params.gameId).then(() =>
+        this.setState({ loading: false })
+      );
     }
   };
 
@@ -61,28 +65,29 @@ class GameDetailsPage extends Component {
       matchday,
       homeTeamName,
       awayTeamName,
-      result: { homeTeamScore, awayTeamScore },
+      result: { goalsAwayTeam, goalsHomeTeam },
       _links: { competition }
     } =
       fixture || state;
 
+    const formattedDate = new Date(date);
+    console.log(fixture);
+
     return (
       <main>
-        <a href={competition.href} target="_blank">
-          League {activeGameId}
-        </a>
-        and {date}
-        <div>
-          {homeTeamName}
-          {homeTeamScore} - {awayTeamScore}
-          {awayTeamName}
-          <div>
-            Prediction:
-            {homeTeamWins},
-            {draws},
-            {awayTeamWins}
-          </div>
+        <div>{date && formattedDate.toDateString()}</div>
+        <div className="home team">{homeTeamName}</div>
+        <div className="score">
+          {goalsHomeTeam} - {goalsAwayTeam}
         </div>
+        <div className="away team">{awayTeamName}</div>
+        <div className="prediction">
+          Prediction:
+          {homeTeamWins},
+          {draws},
+          {awayTeamWins}
+        </div>
+        {this.state.loading ? 'loading' : 'loaded'}
       </main>
     );
   }
