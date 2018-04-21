@@ -65,6 +65,14 @@ export default class GamesListItem extends Component {
                   className="far fa-futbol"
                 />
               )}
+              {status === 'FINISHED' && (
+                <i
+                  style={{
+                    marginLeft: '16px'
+                  }}
+                  className="fas fa-flag-checkered"
+                />
+              )}
             </span>
           </Link>
           <hr />

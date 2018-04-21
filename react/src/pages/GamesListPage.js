@@ -41,7 +41,7 @@ class GamesListPage extends Component {
     return (
       <main className="todays-games">
         <div className="big-img">big image here!</div>
-        <div>
+        <div class="page-title">
           <h2>Today's Games</h2>
           <hr />
           <br />

@@ -92,6 +92,7 @@ button#hamburger {
   div.nav-links.hidden {
     transform: scaleY(0) translateY(-200);
     opacity: 0;
+    display: none;
   }
 
   button#hamburger i.hidden {

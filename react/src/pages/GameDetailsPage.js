@@ -52,9 +52,6 @@ class GameDetailsPage extends Component {
       },
       state
     } = this;
-
-    console.log(this.props);
-
     const { homeTeamWins, draws, awayTeamWins } =
       this.props.activeGame.activeGamePrediction || state.activeGamePrediction;
 
