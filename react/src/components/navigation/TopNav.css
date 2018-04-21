@@ -1,4 +1,9 @@
+:root {
+  --navheight: 100px;
+  --navcolor: rgb(71, 67, 67);
+}
 nav {
+  height: var(--navheight);
   grid-row: 1 / 2;
   grid-column: 1 / -1;
   display: grid;
@@ -8,7 +13,7 @@ nav {
   padding: 2px 40px;
   justify-content: center;
   align-items: center;
-  background: rgba(128, 128, 128, 0.788);
+  background: var(--navcolor);
 }
 nav > * {
   grid-row: 2 / 3;
@@ -41,4 +46,55 @@ div.nav-links a:hover {
 
 div.nav-links a:first-of-type {
   grid-column: -5 / -4;
+}
+
+button#hamburger {
+  position: absolute;
+  right: 10px;
+  display: none;
+  background: none;
+  border: none;
+  outline: 0;
+}
+
+@media screen and (max-width: 700px) {
+  div.nav-links {
+    position: absolute;
+    top: var(--navheight);
+    width: 100vw;
+    padding: 30px 0;
+    grid-gap: 1px;
+    grid-template-columns: 98vw;
+    background: var(--navcolor);
+  }
+
+  nav div.nav-links > a:first-of-type {
+    grid-column: 1 / -1;
+  }
+  div.nav-links > a {
+    width: 92%;
+    margin: 0 auto;
+  }
+
+  button#hamburger {
+    display: block;
+    cursor: pointer;
+  }
+  button#hamburger > *:last-of-type {
+    transform: translateX(-21px);
+  }
+
+  div.nav-links,
+  i {
+    transition: all 0.2s ease-out;
+  }
+
+  div.nav-links.hidden {
+    transform: scaleY(0) translateY(-200);
+    opacity: 0;
+  }
+
+  button#hamburger i.hidden {
+    transform: scaleX(0);
+  }
 }
