@@ -49,18 +49,18 @@ class GamesListPage extends Component {
         <div className="all-games">
           <div className="competition-live">
             <h3>BPL </h3>
-            <hr />
+            <hr className="league-title" />
             {sortAndDisplayGames(filterGames(445))}
           </div>
           <div className="competition-live">
             <h3>La Liga</h3>
-            <hr />
+            <hr className="league-title" />
             {sortAndDisplayGames(filterGames(455))}
           </div>
 
           <div className="competition-live">
             <h3>Bundesliga</h3>
-            <hr />
+            <hr className="league-title" />
             {sortAndDisplayGames(filterGames(452))}
           </div>
         </div>

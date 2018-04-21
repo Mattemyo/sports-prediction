@@ -36,13 +36,17 @@ div.competition-live div.game-link {
   padding-top: 16px;
 }
 hr {
-  min-width: 95%;
+  min-width: 80%;
+  max-width: 90%;
   height: 0px;
   border: 0.1em solid rgba(0, 0, 0, 0.342);
   -webkit-box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.788);
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
   grid-column: 1 / -1;
   margin-bottom: 0;
+}
+hr.league-title {
+  min-width: 96%;
 }
 div.listed-game hr {
   max-width: 20%;
@@ -51,6 +55,7 @@ div.listed-game hr {
 div.listed-game {
   cursor: pointer;
   display: flex;
+  margin: 1px 0;
 }
 
 div.selector {
@@ -59,6 +64,7 @@ div.selector {
   height: 80%;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  transition: all 0.2s ease-out 0s;
 }
 
 div.game-link {
