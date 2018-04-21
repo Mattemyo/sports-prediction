@@ -43,7 +43,9 @@ export const awayTeamDetailsFetched = (data) => ({
 export const fetchAwayTeamDetails = (awayTeamId) => (dispatch) =>
   api.liveGames
     .fetchAwayTeamDetails(awayTeamId)
-    .then((data) => dispatch(awayTeamDetailsFetched(data)));
+    .then((data) =>
+      delay(2000).then(() => dispatch(awayTeamDetailsFetched(data)))
+    );
 
 export const activeGamePredictionFetched = (data) => ({
   type: ACTIVE_GAME_PREDICTION_FETCHED,
@@ -51,8 +53,8 @@ export const activeGamePredictionFetched = (data) => ({
 });
 
 export const fetchActiveGamePrediction = (gameId) => (dispatch) =>
-  api.liveGames.fetchActiveGamePrediction(gameId).then((data) =>
-    delay(2000).then(() => {
-      dispatch(activeGamePredictionFetched(data));
-    })
-  );
+  api.liveGames
+    .fetchActiveGamePrediction(gameId)
+    .then((data) =>
+      delay(2000).then(() => dispatch(activeGamePredictionFetched(data)))
+    );

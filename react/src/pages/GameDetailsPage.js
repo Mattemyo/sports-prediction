@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {
   updateActiveGame,
   fetchActiveGameDetails,
+  fetchHomeTeamDetails,
+  fetchAwayTeamDetails,
   fetchActiveGamePrediction
 } from '../actions/activeGameActions';
 import './GameDetailsPage.css';
@@ -35,14 +37,31 @@ class GameDetailsPage extends Component {
         match: { params },
         updateActiveGame,
         fetchActiveGameDetails,
-        fetchActiveGamePrediction
+        fetchActiveGamePrediction,
+        fetchHomeTeamDetails,
+        fetchAwayTeamDetails
       }
     } = this;
 
     if (params && params.gameId) {
       this.setState({ loading: true });
       updateActiveGame(params.gameId);
-      fetchActiveGameDetails(params.gameId);
+      fetchActiveGameDetails(params.gameId).then(() => {
+        const {
+          activeGame: {
+            fixture: {
+              _links: { homeTeam, awayTeam }
+            }
+          }
+        } = this.props;
+
+        fetchHomeTeamDetails(
+          homeTeam.href.slice(homeTeam.href.lastIndexOf('/') + 1)
+        );
+        fetchAwayTeamDetails(
+          awayTeam.href.slice(awayTeam.href.lastIndexOf('/') + 1)
+        );
+      });
       fetchActiveGamePrediction(params.gameId).then(() =>
         this.setState({ loading: false })
       );
@@ -52,7 +71,13 @@ class GameDetailsPage extends Component {
   render() {
     const {
       props: {
-        activeGame: { activeGameId, head2head, fixture }
+        activeGame: {
+          activeGameId,
+          head2head,
+          fixture,
+          homeTeamDetails,
+          awayTeamDetails
+        }
       },
       state
     } = this;
@@ -75,12 +100,30 @@ class GameDetailsPage extends Component {
 
     return (
       <main>
-        <div>{date && formattedDate.toDateString()}</div>
-        <div className="home team">{homeTeamName}</div>
-        <div className="score">
-          {goalsHomeTeam} - {goalsAwayTeam}
+        <h4>{date && formattedDate.toDateString()}</h4>
+        <div className="home team">
+          <div className="img-container">
+            <img
+              src={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}
+              alt={homeTeamName}
+            />
+          </div>
+          <h4>{homeTeamName}</h4>
         </div>
-        <div className="away team">{awayTeamName}</div>
+        <div className="score">
+          <h2>
+            {goalsHomeTeam} - {goalsAwayTeam}
+          </h2>
+        </div>
+        <div className="away team">
+          <div className="img-container">
+            <img
+              src={awayTeamDetails ? awayTeamDetails.crestUrl : '#'}
+              alt={homeTeamName}
+            />
+          </div>
+          <h4>{awayTeamName}</h4>
+        </div>
         <div className="prediction">
           Prediction:
           {homeTeamWins},
@@ -95,11 +138,17 @@ class GameDetailsPage extends Component {
 
 export default connect(
   (state) => ({
-    activeGame: state.activeGame
+    activeGame: {
+      ...state.activeGame,
+      ...state.homeTeam,
+      ...state.homeTeam
+    }
   }),
   {
     updateActiveGame,
     fetchActiveGameDetails,
+    fetchHomeTeamDetails,
+    fetchAwayTeamDetails,
     fetchActiveGamePrediction
   }
 )(GameDetailsPage);

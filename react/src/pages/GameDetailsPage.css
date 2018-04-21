@@ -1,8 +1,8 @@
-@media screen and (min-width: 700) {
-}
 main {
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 30px auto 1fr;
+  grid-template-columns: 200px auto 200px;
   justify-content: center;
+  align-items: end;
   text-align: center;
 }
 
@@ -10,15 +10,36 @@ main > *:first-of-type {
   grid-column: 1 /-1;
 }
 div.home.team {
-  grid-column: 1 / 4;
+  grid-column: 1 / 2;
 }
 div.score {
-  grid-column: 4 / -4;
+  grid-column: 2 / 3;
+  align-self: center;
 }
 div.away.team {
-  grid-column: -4 / -1;
+  grid-column: 3 / 4;
 }
 
 div.prediction {
   grid-column: 1 /-1;
+}
+
+div.team {
+  grid-row: 2 / 3;
+}
+
+@media screen and (max-width: 700px) {
+  main {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  div.home.team {
+    grid-column: 2 / auto;
+  }
+  div.score {
+    grid-column: 6/8;
+    border: 2px solid black;
+  }
+  div.away.team {
+    grid-column: auto / -2;
+  }
 }

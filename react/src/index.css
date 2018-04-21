@@ -16,13 +16,17 @@ body {
   background: linear-gradient(var(--green), var(--lightgreen));
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.493);
 }
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 .container {
   display: grid;
   width: 100%;
   grid-gap: 20px;
   grid-template-rows: 100px [content-start] auto [content-end] 100px;
-  grid-template-columns: 200px [content-start] auto [content-end] 200px;
+  grid-template-columns: 5vw [content-start] auto [content-end] 5vw;
 }
 main {
   grid-column: 1 / -1;
