@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Paper } from 'material-ui/Paper';
 import GamesListItem from '../components/listItems/GamesListItem';
 import { fetchLiveGames } from '../actions/liveGamesActions';
 
