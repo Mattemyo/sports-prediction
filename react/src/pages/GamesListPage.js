@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Paper } from 'material-ui/Paper';
 import GamesListItem from '../components/listItems/GamesListItem';
 import { fetchLiveGames } from '../actions/liveGamesActions';
+import './GamesListPage.css';
 
 class GamesListPage extends Component {
   state = {
@@ -19,8 +19,8 @@ class GamesListPage extends Component {
     this.props.fetchLiveGames();
   }
 
-  filterGames = (games, competitionId) =>
-    games.filter(
+  filterGames = (competitionId) =>
+    Array.from(this.props.liveGames).filter(
       (game) =>
         Number(
           game._links.competition.href.slice(
@@ -42,21 +42,26 @@ class GamesListPage extends Component {
       <main className="todays-games">
         <div className="big-img">big image here!</div>
         <div>
-          <h3>Today's Games</h3>
+          <h2>Today's Games</h2>
+          <hr />
+          <br />
         </div>
         <div className="all-games">
           <div className="competition-live">
-            <h2>BPL </h2>
-            {sortAndDisplayGames(filterGames(liveGames, 445))}
+            <h3>BPL </h3>
+            <hr />
+            {sortAndDisplayGames(filterGames(445))}
           </div>
           <div className="competition-live">
-            <h2>La Liga</h2>
-            {sortAndDisplayGames(filterGames(liveGames, 455))}
+            <h3>La Liga</h3>
+            <hr />
+            {sortAndDisplayGames(filterGames(455))}
           </div>
 
           <div className="competition-live">
-            <h2>Bundesliga</h2>
-            {sortAndDisplayGames(filterGames(liveGames, 452))}
+            <h3>Bundesliga</h3>
+            <hr />
+            {sortAndDisplayGames(filterGames(452))}
           </div>
         </div>
       </main>

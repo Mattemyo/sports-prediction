@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 :root {
-  --green: #96ee73;
-  --lightgreen: #bfffa6;
+  --green: #e3ffd7;
+  --lightgreen: #e5ebe2;
+  --darkgreen: #6be20a;
 }
 * {
   box-sizing: border-box;
@@ -13,6 +14,7 @@ body {
   width: 100%;
   font-family: sans-serif;
   background: linear-gradient(var(--green), var(--lightgreen));
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.493);
 }
 
 .container {
@@ -23,45 +25,12 @@ body {
 }
 
 @media screen and (min-width: 700px) {
-  main.todays-games {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-gap: 20px;
-  }
+ 
   main {
     grid-row: content;
     grid-column: content;
   }
 
-  main.todays-games {
-    display: grid;
-    grid-template-rows: 90px auto;
-  }
-
-  main.todays-games h3 {
-    text-align: center;
-  }
-
-  div.all-games {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 30px;
-    margin: 0 30px;
-  }
-
-  div.competition-live {
-    text-align: center;
-    box-shadow: 2px 5px 8px #423f11;
-    display: grid;
-    grid-template-rows: 90px;
-  }
-  div.competition-live > * {
-    display: grid;
-    align-items: center;
-  }
-  div.competition-live :nth-child(2n) {
-    background: greenyellow;
-  }
 
   footer {
     grid-column: 1 / -1;

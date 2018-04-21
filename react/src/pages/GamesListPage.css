@@ -1,0 +1,76 @@
+@media screen and (min-width: 700px) {
+  main.todays-games {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-rows: 90px auto;
+  }
+}
+
+main.todays-games h2 {
+  text-align: center;
+}
+
+div.all-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 30px;
+  margin: 0 30px;
+}
+
+div.competition-live {
+  text-align: center;
+  box-shadow: 2px 5px 8px #423f11;
+  display: grid;
+  grid-template-rows: 46px;
+  border-radius: 3px;
+  background: #fff;
+  padding-bottom: 15px;
+}
+
+div.competition-live > * {
+  align-items: center;
+  font-weight: normal;
+}
+
+div.competition-live div.game-link {
+  padding-top: 16px;
+}
+hr {
+  min-width: 95%;
+  height: 0px;
+  border: 0.1em solid rgba(0, 0, 0, 0.342);
+  -webkit-box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.788);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.4);
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+div.listed-game hr {
+  max-width: 20%;
+  margin-top: 0;
+}
+div.listed-game {
+  cursor: pointer;
+  display: flex;
+}
+
+div.selector {
+  background: green;
+  flex: 1;
+  height: 80%;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+div.game-link {
+  flex: 8;
+  transition: all 0.2s ease-out;
+}
+
+div.listed-game a {
+  text-decoration: none;
+  color: #000;
+}
+
+div.competition-live div:nth-child(2n) {
+  background: rgb(250, 249, 249);
+}
