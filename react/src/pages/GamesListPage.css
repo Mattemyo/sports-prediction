@@ -68,7 +68,7 @@ div.selector {
 }
 
 div.game-link {
-  flex: 8;
+  flex: 30;
   transition: all 0.2s ease-out;
 }
 
