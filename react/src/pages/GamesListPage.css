@@ -75,6 +75,7 @@ div.game-link {
 div.listed-game a {
   text-decoration: none;
   color: #000;
+  outline: none;
 }
 
 div.competition-live div:nth-child(2n) {

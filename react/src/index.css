@@ -22,18 +22,15 @@ body {
   width: 100%;
   grid-gap: 20px;
   grid-template-rows: 100px [content-start] auto [content-end] 100px;
+  grid-template-columns: repeat(12, 1fr);
 }
-
+footer {
+  grid-column: 1 / -1;
+  background: orange;
+}
 @media screen and (min-width: 700px) {
- 
   main {
     grid-row: content;
-    grid-column: content;
-  }
-
-
-  footer {
-    grid-column: 1 / -1;
-    background: orange;
+    grid-column: 2 / -2;
   }
 }
