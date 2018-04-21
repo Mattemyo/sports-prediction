@@ -125,10 +125,16 @@ class GameDetailsPage extends Component {
           <h4>{awayTeamName}</h4>
         </div>
         <div className="prediction">
-          Prediction:
-          {homeTeamWins},
-          {draws},
-          {awayTeamWins}
+          <h4>Prediction:</h4>
+          <div className="prediction-bar">
+            <div
+              style={{ width: `${100 * homeTeamWins}%`, background: 'blue' }}
+            />
+            <div style={{ width: `${100 * draws}%`, background: 'green' }} />
+            <div
+              style={{ width: `${100 * awayTeamWins}%`, background: 'yellow' }}
+            />
+          </div>
         </div>
         {this.state.loading ? 'loading' : 'loaded'}
       </main>
