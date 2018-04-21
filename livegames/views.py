@@ -5,12 +5,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 import requests
-import asyncio
-import aiohttp
-import async_timeout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import LiveGame
-from .serializers import *
 # from .tasks import call_url
 
 
