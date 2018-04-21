@@ -7,6 +7,7 @@ import {
   fetchAwayTeamDetails,
   fetchActiveGamePrediction
 } from '../actions/activeGameActions';
+import DoubleBounce from '../components/spinners/DoubleBounce';
 import './GameDetailsPage.css';
 
 class GameDetailsPage extends Component {
@@ -103,10 +104,14 @@ class GameDetailsPage extends Component {
         <h4>{date && formattedDate.toDateString()}</h4>
         <div className="home team">
           <div className="img-container">
-            <img
-              src={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}
-              alt={homeTeamName}
-            />
+            {this.state.loading ? (
+              <DoubleBounce />
+            ) : (
+              <img
+                src={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}
+                alt={homeTeamName}
+              />
+            )}
           </div>
           <h4>{homeTeamName}</h4>
         </div>
@@ -117,10 +122,14 @@ class GameDetailsPage extends Component {
         </div>
         <div className="away team">
           <div className="img-container">
-            <img
-              src={awayTeamDetails ? awayTeamDetails.crestUrl : '#'}
-              alt={homeTeamName}
-            />
+            {this.state.loading ? (
+              <DoubleBounce />
+            ) : (
+              <img
+                src={awayTeamDetails ? awayTeamDetails.crestUrl : '#'}
+                alt={homeTeamName}
+              />
+            )}
           </div>
           <h4>{awayTeamName}</h4>
         </div>
@@ -128,15 +137,17 @@ class GameDetailsPage extends Component {
           <h4>Prediction:</h4>
           <div className="prediction-bar">
             <div
-              style={{ width: `${100 * homeTeamWins}%`, background: 'blue' }}
+              style={{
+                width: `${100 * homeTeamWins}%`,
+                background: 'red'
+              }}
             />
-            <div style={{ width: `${100 * draws}%`, background: 'green' }} />
+            <div style={{ width: `${100 * draws}%`, background: 'white' }} />
             <div
-              style={{ width: `${100 * awayTeamWins}%`, background: 'yellow' }}
+              style={{ width: `${100 * awayTeamWins}%`, background: 'blue' }}
             />
           </div>
         </div>
-        {this.state.loading ? 'loading' : 'loaded'}
       </main>
     );
   }
