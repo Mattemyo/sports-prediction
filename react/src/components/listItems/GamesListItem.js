@@ -19,6 +19,7 @@ export default class GamesListItem extends Component {
       onMouseEnter,
       onMouseLeave,
       props: {
+        idx,
         game: {
           status,
           homeTeamName,
@@ -40,6 +41,7 @@ export default class GamesListItem extends Component {
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className="listed-game"
+        style={{ animationDelay: `${idx * 0.05}s` }}
       >
         <div
           style={{

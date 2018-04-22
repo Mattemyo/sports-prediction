@@ -36,6 +36,8 @@ div.competition-live {
   border-radius: 3px;
   background: #fff;
   padding-bottom: 15px;
+  transition: all 2s ease-out;
+  min-height: 300px;
 }
 
 div.competition-live > * {
@@ -67,6 +69,7 @@ div.listed-game {
   cursor: pointer;
   display: flex;
   margin: 1px 0;
+  animation: display-game 0.2s ease-out 1;
 }
 
 div.selector {
@@ -91,4 +94,13 @@ div.listed-game a {
 
 div.competition-live div:nth-child(2n) {
   background: rgb(250, 249, 249);
+}
+
+@keyframes display-game {
+  from {
+    transform: translateX(-300px);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
