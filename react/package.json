@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "react-palette":"^0.1.3",
     "axios": "^0.18.0",
     "connected-react-router": "^4.3.0",
     "history": "^4.7.2",

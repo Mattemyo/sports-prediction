@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Palette from 'react-palette';
 import {
   updateActiveGame,
   fetchActiveGameDetails,
@@ -7,9 +8,10 @@ import {
   fetchAwayTeamDetails,
   fetchActiveGamePrediction
 } from '../actions/activeGameActions';
+import { fetchActiveCompetition } from '../actions/activeCompetitionActions';
 import Rings from '../components/spinners/Rings';
 import Dot from '../components/spinners/Dot';
-import Palette from 'react-palette';
+import LeagueTable from '../components/tables/LeagueTable';
 import './GameDetailsPage.css';
 
 class GameDetailsPage extends Component {
@@ -31,7 +33,8 @@ class GameDetailsPage extends Component {
     _links: {
       competition: {}
     },
-    loading: false
+    loading: true,
+    competitionLoading: true
   };
 
   componentDidMount = () => {
@@ -47,24 +50,30 @@ class GameDetailsPage extends Component {
     } = this;
 
     if (params && params.gameId) {
-      this.setState({ loading: true });
       updateActiveGame(params.gameId);
       fetchActiveGameDetails(params.gameId).then(() => {
         const {
           activeGame: {
             fixture: {
-              _links: { homeTeam, awayTeam }
+              _links: { competiton, homeTeam, awayTeam }
             }
           }
         } = this.props;
 
+        // Only fetch team and league details when game data has been fetched
         fetchHomeTeamDetails(
           homeTeam.href.slice(homeTeam.href.lastIndexOf('/') + 1)
         );
         fetchAwayTeamDetails(
           awayTeam.href.slice(awayTeam.href.lastIndexOf('/') + 1)
         );
+        // fetch league table
+        fetchActiveCompetition(
+          competition.href.slice(competition.href.lastIndexOf('/') + 1)
+        );
       });
+
+      // Fetch prediction simultaneously
       fetchActiveGamePrediction(params.gameId).then(() =>
         this.setState({ loading: false })
       );
@@ -100,7 +109,7 @@ class GameDetailsPage extends Component {
 
     const formattedDate = new Date(date);
 
-    const { loading } = this.state;
+    const { loading, competitionLoading } = this.state;
 
     return (
       <main>
@@ -140,23 +149,22 @@ class GameDetailsPage extends Component {
           <h4>Prediction:</h4>
           <div className="prediction-bar">
             <Palette image={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}>
-              {(palette) =>  (
-                  <div
-                    className="percentage"
-                    style={{
-                      width: `${100 * homeTeamWins}%`,
-                      background:
-                        palette.darkVibrant ||
-                        palette.darkMuted ||
-                        palette.lightMuted ||
-                        palette.muted ||
-                        palette.vibrant ||
-                        palette.lightVibrant ||
-                        'black'
-                    }}
-                  />
-                )
-              }
+              {(palette) => (
+                <div
+                  className="percentage"
+                  style={{
+                    width: `${100 * homeTeamWins}%`,
+                    background:
+                      palette.darkVibrant ||
+                      palette.darkMuted ||
+                      palette.lightMuted ||
+                      palette.muted ||
+                      palette.vibrant ||
+                      palette.lightVibrant ||
+                      'black'
+                  }}
+                />
+              )}
             </Palette>
             {loading ? (
               <Dot />
@@ -186,6 +194,8 @@ class GameDetailsPage extends Component {
             </Palette>
           </div>
         </div>
+        {/* TODO: Display Competition Table */}
+        <LeagueTable loading={competitionLoading} />
       </main>
     );
   }
@@ -197,6 +207,9 @@ export default connect(
       ...state.activeGame,
       ...state.homeTeam,
       ...state.homeTeam
+    },
+    activeCompetition: {
+      ...state.activeCompetition
     }
   }),
   {
@@ -204,6 +217,7 @@ export default connect(
     fetchActiveGameDetails,
     fetchHomeTeamDetails,
     fetchAwayTeamDetails,
-    fetchActiveGamePrediction
+    fetchActiveGamePrediction,
+    fetchActiveCompetition
   }
 )(GameDetailsPage);

@@ -15,5 +15,11 @@ export default {
       axios
         .get(`${baseUrl}/livegame/prediction/${gameId}`)
         .then((res) => res.data)
+  },
+  competition: {
+    fetchActiveCompetition: (competitionId) =>
+      axios
+        .get(`${baseUrl}/competition/${competitionId}`)
+        .then((res) => res.data)
   }
 };
