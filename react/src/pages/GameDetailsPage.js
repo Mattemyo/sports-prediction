@@ -140,9 +140,7 @@ class GameDetailsPage extends Component {
           <h4>Prediction:</h4>
           <div className="prediction-bar">
             <Palette image={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}>
-              {(palette) => {
-                console.log(palette);
-                return (
+              {(palette) =>  (
                   <div
                     className="percentage"
                     style={{
@@ -157,8 +155,8 @@ class GameDetailsPage extends Component {
                         'black'
                     }}
                   />
-                );
-              }}
+                )
+              }
             </Palette>
             {loading ? (
               <Dot />

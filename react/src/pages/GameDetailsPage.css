@@ -33,7 +33,7 @@ div.prediction div.prediction-bar {
   grid-column: 2 /-2;
   display: flex;
   justify-content: center;
-  height: 55px;
+  height: 30px;
   border: 1px solid rgba(51, 45, 45, 0.726);
   box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.795);
   border-radius: 3px;
