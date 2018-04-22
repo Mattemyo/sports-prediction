@@ -39,7 +39,7 @@ div.prediction div.prediction-bar {
   border-radius: 3px;
 }
 div.prediction-bar > div.percentage {
-  min-width: 8%;
+  min-width: 10%;
   transition: all 0.8s ease-out;
 }
 
@@ -58,7 +58,9 @@ div.team h4 {
 }
 
 div.img-container {
-  min-height: 160px;
+  min-height: 100px;
+  display: grid;
+  align-items: end;
 }
 
 div.team img {
@@ -91,4 +93,3 @@ div.team img {
     transform: scaleY(1);
   }
 }
-

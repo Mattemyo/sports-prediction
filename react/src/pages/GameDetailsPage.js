@@ -9,6 +9,7 @@ import {
 } from '../actions/activeGameActions';
 import Rings from '../components/spinners/Rings';
 import Dot from '../components/spinners/Dot';
+import Palette from 'react-palette';
 import './GameDetailsPage.css';
 
 class GameDetailsPage extends Component {
@@ -98,11 +99,8 @@ class GameDetailsPage extends Component {
       fixture || state;
 
     const formattedDate = new Date(date);
-    console.log(fixture);
 
     const { loading } = this.state;
-
- 
 
     return (
       <main>
@@ -141,20 +139,53 @@ class GameDetailsPage extends Component {
         <div className="prediction">
           <h4>Prediction:</h4>
           <div className="prediction-bar">
-            <div className="percentage"
-              style={{
-                width: `${100 * homeTeamWins}%`,
-                background: 'red'
+            <Palette image={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}>
+              {(palette) => {
+                console.log(palette);
+                return (
+                  <div
+                    className="percentage"
+                    style={{
+                      width: `${100 * homeTeamWins}%`,
+                      background:
+                        palette.darkVibrant ||
+                        palette.darkMuted ||
+                        palette.lightMuted ||
+                        palette.muted ||
+                        palette.vibrant ||
+                        palette.lightVibrant ||
+                        'black'
+                    }}
+                  />
+                );
               }}
-            />
+            </Palette>
             {loading ? (
               <Dot />
             ) : (
-              <div className="percentage" style={{ width: `${100 * draws}%`, background: 'white' }} />
+              <div
+                className="percentage"
+                style={{ width: `${100 * draws}%`, background: 'white' }}
+              />
             )}
-            <div className="percentage"
-              style={{ width: `${100 * awayTeamWins}%`, background: 'blue' }}
-            />
+            <Palette image={awayTeamDetails ? awayTeamDetails.crestUrl : '#'}>
+              {(palette) => (
+                <div
+                  className="percentage"
+                  style={{
+                    width: `${100 * awayTeamWins}%`,
+                    background:
+                      palette.darkVibrant ||
+                      palette.darkMuted ||
+                      palette.lightMuted ||
+                      palette.muted ||
+                      palette.vibrant ||
+                      palette.lightVibrant ||
+                      'black'
+                  }}
+                />
+              )}
+            </Palette>
           </div>
         </div>
       </main>
