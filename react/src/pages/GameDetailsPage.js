@@ -71,7 +71,9 @@ class GameDetailsPage extends Component {
         // fetch league table
         fetchActiveCompetitionTable(
           competition.href.slice(competition.href.lastIndexOf('/') + 1)
-        ).then(() => this.setState({ competitionLoading: false }));
+        ).then(() =>
+          setTimeout(() => this.setState({ competitionLoading: false }), 3000)
+        );
       });
 
       // Fetch prediction simultaneously

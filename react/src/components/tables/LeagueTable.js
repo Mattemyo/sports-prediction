@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Rings from '../spinners/Rings';
 import './LeagueTable.css';
 
 const LeagueTable = ({ loading, activeCompetition }) => (
@@ -14,7 +15,7 @@ const LeagueTable = ({ loading, activeCompetition }) => (
       <h3>P</h3>
     </div>
     <div className="standing grid">
-      {!loading &&
+      {!loading ? (
         activeCompetition.table.standing.map((team) => (
           <div className="listed-team league-row grid" key={team.teamName}>
             <h1>{team.position}</h1>
@@ -28,7 +29,10 @@ const LeagueTable = ({ loading, activeCompetition }) => (
               <strong>{team.points}</strong>
             </h4>
           </div>
-        ))}
+        ))
+      ) : (
+        <Rings style={{ width: '30px' }} />
+      )}
     </div>
   </div>
 );
