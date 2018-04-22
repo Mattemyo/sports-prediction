@@ -24,7 +24,10 @@ img {
 }
 .grid {
   display: grid;
+  justify-content: center;
+  align-items: center;
 }
+
 .container {
   display: grid;
   width: 100%;
