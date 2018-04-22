@@ -1,9 +1,11 @@
 import api from '../api';
 import { ACTIVE_COMPETITION_TABLE_FETCHED } from '../actionTypes';
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const activeCompetitionTableFetched = (data) => ({
   type: ACTIVE_COMPETITION_TABLE_FETCHED,
-  activeCompetition: data
+  table: data
 });
 
 export const fetchActiveCompetitionTable = (competitionId) => (dispatch) =>

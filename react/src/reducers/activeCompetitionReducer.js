@@ -4,11 +4,7 @@ export default (state = {}, action = {}) => {
   switch (action.type) {
     case ACTIVE_COMPETITION_TABLE_FETCHED:
       return {
-        ...state,
-        activeCompetition: {
-          ...state.activeCompetition,
-          activeCompetitionTable: action.activeCompetitionTable
-        }
+        table: action.table
       };
     default:
       return state;

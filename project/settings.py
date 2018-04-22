@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'webpack_loader',
     'livegames',
     'gamepredictor',
-    'teams'
+    'teams',
+    'competitions'
 ]
 
 MIDDLEWARE = [

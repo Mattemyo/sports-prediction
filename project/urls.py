@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^api/livegame/prediction/(?P<game_id>[0-9]+)$',
         gamepredictor_views.games_detail),
     url(r'^api/team/(?P<team_id>[0-9]+)$', teams_views.team_detail),
-    url(r'^api/competition/(?P<competition_id>[0-9]+)/leagueTable/$',
+    url(r'^api/competition/(?P<competition_id>[0-9]+)/leagueTable$',
         competitions_views.competition_table),
     url(r'^', TemplateView.as_view(template_name="main.html")),
 ]

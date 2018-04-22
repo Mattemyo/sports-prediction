@@ -45,7 +45,8 @@ class GameDetailsPage extends Component {
         fetchActiveGameDetails,
         fetchActiveGamePrediction,
         fetchHomeTeamDetails,
-        fetchAwayTeamDetails
+        fetchAwayTeamDetails,
+        fetchActiveCompetitionTable
       }
     } = this;
 
@@ -55,7 +56,7 @@ class GameDetailsPage extends Component {
         const {
           activeGame: {
             fixture: {
-              _links: { competiton, homeTeam, awayTeam }
+              _links: { competition, homeTeam, awayTeam }
             }
           }
         } = this.props;
@@ -70,7 +71,7 @@ class GameDetailsPage extends Component {
         // fetch league table
         fetchActiveCompetitionTable(
           competition.href.slice(competition.href.lastIndexOf('/') + 1)
-        );
+        ).then(() => this.setState({ competitionLoading: false }));
       });
 
       // Fetch prediction simultaneously
@@ -89,7 +90,8 @@ class GameDetailsPage extends Component {
           fixture,
           homeTeamDetails,
           awayTeamDetails
-        }
+        },
+        activeCompetition
       },
       state
     } = this;
@@ -194,7 +196,7 @@ class GameDetailsPage extends Component {
             </Palette>
           </div>
         </div>
-        {/* TODO: Display Competition Table */}
+        <hr />
         <LeagueTable loading={competitionLoading} />
       </main>
     );

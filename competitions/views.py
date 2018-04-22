@@ -11,14 +11,15 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Client requests today's games
 @api_view(['GET'])
-def competition_detail(request, team_id):
+def competition_table(request, competition_id):
     """
-get team details.
+get competition table.
  """
 
     return Response(
         requests.get(
-            'http://api.football-data.org/v1/competitions/{}/'.format(team_id),
+            'http://api.football-data.org/v1/competitions/{}/leagueTable'.format(
+                competition_id),
             headers={
                 'X-Auth-Token': 'f8617d5c816742708d7e675a5a76a379'
             }
