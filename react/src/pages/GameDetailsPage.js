@@ -8,7 +8,7 @@ import {
   fetchAwayTeamDetails,
   fetchActiveGamePrediction
 } from '../actions/activeGameActions';
-import { fetchActiveCompetition } from '../actions/activeCompetitionActions';
+import { fetchActiveCompetitionTable } from '../actions/activeCompetitionActions';
 import Rings from '../components/spinners/Rings';
 import Dot from '../components/spinners/Dot';
 import LeagueTable from '../components/tables/LeagueTable';
@@ -68,7 +68,7 @@ class GameDetailsPage extends Component {
           awayTeam.href.slice(awayTeam.href.lastIndexOf('/') + 1)
         );
         // fetch league table
-        fetchActiveCompetition(
+        fetchActiveCompetitionTable(
           competition.href.slice(competition.href.lastIndexOf('/') + 1)
         );
       });
@@ -218,6 +218,6 @@ export default connect(
     fetchHomeTeamDetails,
     fetchAwayTeamDetails,
     fetchActiveGamePrediction,
-    fetchActiveCompetition
+    fetchActiveCompetitionTable
   }
 )(GameDetailsPage);

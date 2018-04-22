@@ -17,9 +17,9 @@ export default {
         .then((res) => res.data)
   },
   competition: {
-    fetchActiveCompetition: (competitionId) =>
+    fetchActiveCompetitionTable: (competitionId) =>
       axios
-        .get(`${baseUrl}/competition/${competitionId}`)
+        .get(`${baseUrl}/competition/${competitionId}/leagueTable`)
         .then((res) => res.data)
   }
 };
