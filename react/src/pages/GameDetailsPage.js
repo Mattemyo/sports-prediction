@@ -7,7 +7,8 @@ import {
   fetchAwayTeamDetails,
   fetchActiveGamePrediction
 } from '../actions/activeGameActions';
-import DoubleBounce from '../components/spinners/DoubleBounce';
+import Rings from '../components/spinners/Rings';
+import Dot from '../components/spinners/Dot';
 import './GameDetailsPage.css';
 
 class GameDetailsPage extends Component {
@@ -99,13 +100,17 @@ class GameDetailsPage extends Component {
     const formattedDate = new Date(date);
     console.log(fixture);
 
+    const { loading } = this.state;
+
+ 
+
     return (
       <main>
         <h4>{date && formattedDate.toDateString()}</h4>
         <div className="home team">
           <div className="img-container">
-            {this.state.loading ? (
-              <DoubleBounce />
+            {loading ? (
+              <Rings />
             ) : (
               <img
                 src={homeTeamDetails ? homeTeamDetails.crestUrl : '#'}
@@ -122,8 +127,8 @@ class GameDetailsPage extends Component {
         </div>
         <div className="away team">
           <div className="img-container">
-            {this.state.loading ? (
-              <DoubleBounce />
+            {loading ? (
+              <Rings />
             ) : (
               <img
                 src={awayTeamDetails ? awayTeamDetails.crestUrl : '#'}
@@ -136,14 +141,18 @@ class GameDetailsPage extends Component {
         <div className="prediction">
           <h4>Prediction:</h4>
           <div className="prediction-bar">
-            <div
+            <div className="percentage"
               style={{
                 width: `${100 * homeTeamWins}%`,
                 background: 'red'
               }}
             />
-            <div style={{ width: `${100 * draws}%`, background: 'white' }} />
-            <div
+            {loading ? (
+              <Dot />
+            ) : (
+              <div className="percentage" style={{ width: `${100 * draws}%`, background: 'white' }} />
+            )}
+            <div className="percentage"
               style={{ width: `${100 * awayTeamWins}%`, background: 'blue' }}
             />
           </div>
