@@ -11,7 +11,9 @@ export default class TopNav extends Component {
     return (
       <nav>
         <div className="nav-logo">
-          <h3>&#9917; and FutureScore</h3>
+          <h3>
+            <span>&#9917;</span> FutureScore
+          </h3>
         </div>
         <div className={`nav-links ${open && 'hidden'}`}>
           <a href="http://#">Competitions</a>
