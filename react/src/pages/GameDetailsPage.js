@@ -199,7 +199,14 @@ class GameDetailsPage extends Component {
           </div>
         </div>
         <hr />
-        <LeagueTable loading={competitionLoading} />
+        {competitionLoading && <div style={{ minHeight: '200px' }} />}
+        {competitionLoading ? (
+          <div style={{ position: 'absolute', left: '45%', bottom: '2%' }}>
+            <Rings />
+          </div>
+        ) : (
+          <LeagueTable />
+        )}
       </main>
     );
   }
