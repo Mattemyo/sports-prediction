@@ -2,18 +2,21 @@ div.table {
   grid-column: 1 / -1;
   text-align: center;
   animation: fade-in 0.5s ease-out 1;
+  box-shadow: 2px 2px 8px rgb(160, 158, 158);
 }
 /* naming the columns */
 div.league-row {
   grid-template-columns: repeat(10, 1fr);
-  grid-gap: 10px;
+  grid-gap: 30px;
 }
 .img-container-small {
   display: grid;
   align-items: center;
   justify-content: center;
   padding: 10px;
-  max-height: auto;
+}
+div.img-container-small > img {
+  max-height: 60px;
 }
 
 div.league-row > *:first-of-type {
@@ -45,15 +48,15 @@ div.league-row > *:nth-of-type(6) {
 /* listed team */
 div.standing {
   grid-template-columns: repeat(10, 1fr);
-  grid-gap: 30px;
+  grid-row: repeat(10, 200px);
 }
 
 div.standing > * {
   grid-column: 1 /-1;
+  max-height: 90px;
 }
 
 div.listed-team {
-  margin-top: 60px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgb(201, 196, 196);
   grid-template-columns: repeat(10, 1fr);
@@ -86,6 +89,10 @@ div.labels {
     font-weight: normal;
   }
 
+
+  .position {
+    padding-left: 6px;
+  }
   div.league-row > h4.points,
   div.league-row > *:nth-of-type(6) {
     grid-column: 9/ 11;
@@ -98,6 +105,13 @@ div.labels {
   div.listed-team {
     margin-top: 0;
     font-size: 12px;
+  }
+  div.img-container-small {
+    width: 60px;
+    grid-column: 3 / 5 !important;
+  }
+  .team-name {
+    display: none;
   }
 }
 

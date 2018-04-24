@@ -13,5 +13,6 @@
   * BPL 445
 
 - TODO
+  * Make elements slide (in leauge table) in like on live games page
   * Fetch League Name to display
   * Compare probability to odds

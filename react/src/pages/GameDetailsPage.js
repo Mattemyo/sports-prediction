@@ -198,7 +198,6 @@ class GameDetailsPage extends Component {
             </Palette>
           </div>
         </div>
-        <hr />
         {competitionLoading && <div style={{ minHeight: '200px' }} />}
         {competitionLoading ? (
           <div style={{ position: 'absolute', left: '45%', bottom: '2%' }}>
