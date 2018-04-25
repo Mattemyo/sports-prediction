@@ -1,7 +1,9 @@
 :root {
   --navheight: 100px;
+  --navTextColor: #e7e7e7;
 }
 nav {
+  color: var(--navTextColor);
   z-index: 900;
   height: var(--navheight);
   grid-row: 1 / 2;
@@ -36,7 +38,7 @@ div.nav-links a {
   border-radius: 3px;
   padding: 10px;
   text-decoration: none;
-  color: black;
+  color: var(--navTextColor);
   transition: all 0.2s ease-out;
 }
 
