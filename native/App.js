@@ -6,7 +6,9 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Soccer Predicition App</Text>
-        <Text>This Application will predict the outcome of soccer games.</Text>
+        <Text style={styles.division}>
+          This Application will predict the outcome of soccer games.
+        </Text>
         <Text>This </Text>
       </View>
     );
@@ -18,6 +20,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
+  division: {
+    backgroundColor: 'grey',
+    textAlign: 'center'
+  }
 });
